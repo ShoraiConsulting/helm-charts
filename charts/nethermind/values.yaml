@@ -177,7 +177,6 @@ persistence:
     - ReadWriteOnce
   size: 250Gi
 
-
 ## Nethermind Settings
 ##
 
@@ -245,6 +244,18 @@ p2pNodePort:
       ## @param p2pNodePort.initContainer.pullPolicy Container pull policy
       ##
       pullPolicy: IfNotPresent
+
+## Additional init containers to launch
+##
+customInitContainers:
+  ## @param customInitContainers.enabled Launch custom init containers
+  ##
+  enabled: false
+  containers: []
+    # - name: test1
+    #   image: "test1"
+    # - name: test2
+    #   image: "test2"
 
 ## Monitoring
 ##

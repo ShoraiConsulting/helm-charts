@@ -35,7 +35,7 @@ spec:
       priorityClassName: {{ .Values.priorityClassName | quote }}
       securityContext:
         {{- toYaml .Values.securityContext | nindent 8 }}
-    {{- if or (and .Values.persistence.enabled .Values.initChownData) (.Values.p2pNodePort.enabled) }}
+    {{- if or (and .Values.persistence.enabled .Values.initChownData) (.Values.p2pNodePort.enabled) (.Values.customInitContainers.enabled) }}
       initContainers:
         {{- if .Values.p2pNodePort.enabled }}
         - name: init-nodeport
@@ -84,6 +84,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data/nethermind
+        {{- end }}
+        {{- if .Values.customInitContainers.enabled }}
+          {{- toYaml .Values.customInitContainers.containers | nindent 8 }}
         {{- end }}
     {{- end }}
       containers:
