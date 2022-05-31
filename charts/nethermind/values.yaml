@@ -81,6 +81,18 @@ initImage:
   tag: "1.24"
   pullPolicy: IfNotPresent
 
+## Additional init containers to launch
+##
+customInitContainers:
+  ## @param customInitContainers.enabled Launch custom init containers
+  ##
+  enabled: false
+  containers: []
+    # - name: test1
+    #   image: "test1"
+    # - name: test2
+    #   image: "test2"
+
 ## Sidecar image is used to perform Liveness/Readiness probes.
 ##
 sidecar:

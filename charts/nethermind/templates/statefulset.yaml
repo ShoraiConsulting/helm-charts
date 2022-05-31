@@ -88,6 +88,9 @@ spec:
           volumeMounts:
             - name: env-nodeport
               mountPath: /env
+        {{- if .Values.customInitContainers.enabled }}
+          {{- toYaml .Values.customInitContainers.containers | nindent 8 }}
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
