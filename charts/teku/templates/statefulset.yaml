@@ -141,7 +141,7 @@ spec:
         {{- if or .Values.restApi.enabled .Values.metrics.enabled }}
           ports:
           {{- if .Values.restApi.enabled }}
-            - name: rest-api
+            - name: {{ .Values.restApi.portName }}
               containerPort: {{ .Values.restApi.port }}
               protocol: TCP
           {{- end }}
@@ -225,6 +225,10 @@ spec:
         name: data
         labels:
           {{- include "common.labels.standard" . | nindent 10 }}
+      {{- with .Values.persistence.annotations }}
+        annotations:
+          {{ toYaml . | nindent 10 | trim }}
+      {{- end }}
       spec:
         accessModes: {{ .Values.persistence.accessModes }}
         storageClassName: {{ .Values.persistence.storageClassName }}

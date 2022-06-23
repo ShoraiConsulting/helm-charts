@@ -26,7 +26,7 @@ image:
   repository: nethermind/nethermind
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.12.7"
+  tag: "1.13.3"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -176,6 +176,7 @@ persistence:
   accessModes:
     - ReadWriteOnce
   size: 250Gi
+  annotations: {}
 
 ## Nethermind Settings
 ##
